@@ -1,6 +1,4 @@
-﻿
-
-using GloboTicket.TicketManagement.Domain.Entities;
+﻿using GloboTicket.TicketManagement.Domain.Entities;
 
 namespace GloboTicket.TicketManagement.Application.Contracts.Persistence
 {
