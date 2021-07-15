@@ -4,6 +4,7 @@ using GloboTicket.TicketManagement.Application.Contracts.Persistence;
 using GloboTicket.TicketManagement.Domain.Entities;
 using MediatR;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -22,7 +23,7 @@ namespace GloboTicket.TicketManagement.Application.Features.Categories.Queries.G
 
         public async Task<List<CategoryListVm>> Handle(GetCategoryListQuery request, CancellationToken cancellationToken)
         {
-            var allCategories = (await _categoryRepository.ListAllAsync());
+            var allCategories = (await _categoryRepository.ListAllAsync()).OrderBy(x => x.Name);
             return _mapper.Map<List<CategoryListVm>>(allCategories);
         }
     }

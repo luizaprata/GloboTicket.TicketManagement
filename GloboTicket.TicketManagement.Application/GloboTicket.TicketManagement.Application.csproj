@@ -16,7 +16,6 @@
 
   <ItemGroup>
     <Folder Include="Features\Categories\Commands\" />
-    <Folder Include="Features\Categories\Queries\GetCategoriesListWithEvents\" />
     <Folder Include="Features\Events\Commands\CreateEvent\" />
     <Folder Include="Features\Order\Commands\" />
     <Folder Include="Features\Order\Queries\" />
