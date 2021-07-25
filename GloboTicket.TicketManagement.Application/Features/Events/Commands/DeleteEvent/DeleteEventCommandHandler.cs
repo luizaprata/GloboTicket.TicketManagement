@@ -5,26 +5,26 @@ using MediatR;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace GloboTicket.TicketManagement.Application.Features.Events.Commands.UpdateEvent
+namespace GloboTicket.TicketManagement.Application.Features.Events.Commands.DeleteEvent
 {
-    public class UpdateEventCommandHandler : IRequestHandler<UpdateEventCommand>
+    public class DeleteEventCommandHandler : IRequestHandler<DeleteEventCommand>
 
     {
         private readonly IMapper _mapper;
         private readonly IEventRepository _eventRepository;
 
 
-        public UpdateEventCommandHandler(IMapper mapper, IEventRepository eventRepository)
+        public DeleteEventCommandHandler(IMapper mapper, IEventRepository eventRepository)
         {
             _mapper = mapper;
             _eventRepository = eventRepository;
         }
 
-        public async Task<Unit> Handle(UpdateEventCommand request, CancellationToken cancellationToken)
+        public async Task<Unit> Handle(DeleteEventCommand request, CancellationToken cancellationToken)
         {
             var eventToUpdate = await _eventRepository.GetByIdAsync(request.EventId);
-            _mapper.Map(request, eventToUpdate, typeof(UpdateEventCommand), typeof(Event));
-            await _eventRepository.UpdateAsync(eventToUpdate);
+            _mapper.Map(request, eventToUpdate, typeof(DeleteEventCommand), typeof(Event));
+            await _eventRepository.DeleteAsync(eventToUpdate);
             return Unit.Value;
         }
     }
