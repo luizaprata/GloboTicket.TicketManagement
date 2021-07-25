@@ -1,17 +1,15 @@
-﻿using System;
-using System.Threading.Tasks;
+﻿using FluentValidation;
 
 namespace GloboTicket.TicketManagement.Application.Features.Categories.Commands.CreateCategory
 {
-    internal class CreateCategoryCommandValidator
+    public class CreateCategoryCommandValidator : AbstractValidator<CreateCategoryCommand>
     {
         public CreateCategoryCommandValidator()
         {
-        }
-
-        internal Task ValidateAsync(CreateCategoryCommand request)
-        {
-            throw new NotImplementedException();
+            RuleFor(p => p.Name)
+                .NotEmpty().WithMessage("{PropertyName} is required.")
+                .NotNull()
+                .MaximumLength(50).WithMessage("{PropertyName} must not exceed 10 characters.");
         }
     }
 }

@@ -11,10 +11,10 @@ namespace GloboTicket.TicketManagement.Application.Features.Events.Commands.Upda
 
     {
         private readonly IMapper _mapper;
-        private readonly IEventRepository _eventRepository;
+        private readonly ICategoryRepository _eventRepository;
 
 
-        public UpdateEventCommandHandler(IMapper mapper, IEventRepository eventRepository)
+        public UpdateEventCommandHandler(IMapper mapper, ICategoryRepository eventRepository)
         {
             _mapper = mapper;
             _eventRepository = eventRepository;

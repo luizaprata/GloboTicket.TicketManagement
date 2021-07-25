@@ -26,7 +26,7 @@ namespace GloboTicket.TicketManagement.Application.Features.Events.Commands.Crea
 
             RuleFor(e => e)
                 .MustAsync(EventNameAndDateUnique)
-                .WithMessage("An event with the same name and date already exists.")
+                .WithMessage("An event with the same name and date already exists.");
 
             RuleFor(p => p.Price)
                .NotEmpty().WithMessage("{PropertyName} is required")

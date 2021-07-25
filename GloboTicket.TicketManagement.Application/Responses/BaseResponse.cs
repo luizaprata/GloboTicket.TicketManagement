@@ -15,7 +15,7 @@ namespace GloboTicket.TicketManagement.Application.Responses
             Message = message;
         }
 
-        public BaseResponse(string message = null, bool success)
+        public BaseResponse(bool success, string message = null)
         {
             Success = success;
             Message = message;
