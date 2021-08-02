@@ -6,7 +6,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\GloboTicket.TicketManagement.Application\GloboTicket.TicketManagement.Application.csproj" />
-    <ProjectReference Include="..\GloboTicket.TicketManagement.Instrastructure\GloboTicket.TicketManagement.Instrastructure.csproj" />
+    <ProjectReference Include="..\GloboTicket.TicketManagement.Infrastructure\GloboTicket.TicketManagement.Infrastructure.csproj" />
     <ProjectReference Include="..\GloboTicket.TicketManagement.Persistence\GloboTicket.TicketManagement.Persistence.csproj" />
   </ItemGroup>
 

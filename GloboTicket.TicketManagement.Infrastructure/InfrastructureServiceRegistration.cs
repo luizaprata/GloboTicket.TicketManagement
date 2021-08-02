@@ -1,10 +1,10 @@
 ﻿using GloboTicket.TicketManagement.Application.Contracts.Infrastructure;
 using GloboTicket.TicketManagement.Application.Models.Mail;
-using GloboTicket.TicketManagement.Instrastructure.Mail;
+using GloboTicket.TicketManagement.Infrastructure.Mail;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace GloboTicket.TicketManagement.Instrastructure
+namespace GloboTicket.TicketManagement.Infrastructure
 {
     public static class InfrastructureServiceRegistration
     {
