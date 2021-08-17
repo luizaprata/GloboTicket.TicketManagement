@@ -2,13 +2,13 @@
 using GloboTicket.TicketManagement.Application.Features.Events.Commands.DeleteEvent;
 using GloboTicket.TicketManagement.Application.Features.Events.Commands.UpdateEvent;
 using GloboTicket.TicketManagement.Application.Features.Events.Queries.GetEventDetail;
+using GloboTicket.TicketManagement.Application.Features.Events.Queries.GetEventsExport;
 using GloboTicket.TicketManagement.Application.Features.Events.Queries.GetEventsList;
 using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace GloboTicket.TicketManagement.Api.Controllers
@@ -24,7 +24,7 @@ namespace GloboTicket.TicketManagement.Api.Controllers
             _mediator = mediator;
         }
 
-        [HttpGet(Name ="GetAllEvents")]
+        [HttpGet(Name = "GetAllEvents")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesDefaultResponseType]
         public async Task<ActionResult<List<EventListVm>>> GetAllEvents()
@@ -67,6 +67,14 @@ namespace GloboTicket.TicketManagement.Api.Controllers
             var deleteEventCommand = new DeleteEventCommand() { EventId = id };
             await _mediator.Send(deleteEventCommand);
             return NoContent();
+        }
+
+
+        [HttpPost("export", Name = "ExportEvents")]
+        public async Task<ActionResult<Guid>> ExportEvents([FromBody] CreateEventCommand createEventCommand)
+        {
+            var fileDto = await _mediator.Send(new GetEventsExportQuery());
+            return File(fileDto.Data, fileDto.ContentType, fileDto.EventExportFileName);
         }
     }
 }
