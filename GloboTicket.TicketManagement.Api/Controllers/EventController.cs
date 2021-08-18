@@ -1,4 +1,5 @@
-﻿using GloboTicket.TicketManagement.Application.Features.Events.Commands.CreateEvent;
+﻿using GloboTicket.TicketManagement.Api.Utility;
+using GloboTicket.TicketManagement.Application.Features.Events.Commands.CreateEvent;
 using GloboTicket.TicketManagement.Application.Features.Events.Commands.DeleteEvent;
 using GloboTicket.TicketManagement.Application.Features.Events.Commands.UpdateEvent;
 using GloboTicket.TicketManagement.Application.Features.Events.Queries.GetEventDetail;
@@ -48,7 +49,7 @@ namespace GloboTicket.TicketManagement.Api.Controllers
             return Ok(id);
         }
 
-        [HttpPost(Name = "UpdateEvent")]
+        [HttpPut(Name = "UpdateEvent")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesDefaultResponseType]
@@ -58,7 +59,7 @@ namespace GloboTicket.TicketManagement.Api.Controllers
             return NoContent();
         }
 
-        [HttpPost(Name = "DeleteEvent")]
+        [HttpDelete(Name = "DeleteEvent")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesDefaultResponseType]
@@ -70,7 +71,8 @@ namespace GloboTicket.TicketManagement.Api.Controllers
         }
 
 
-        [HttpPost("export", Name = "ExportEvents")]
+        [HttpGet("export", Name = "ExportEvents")]
+        [FileResultContentType("text/csv")]
         public async Task<ActionResult<Guid>> ExportEvents([FromBody] CreateEventCommand createEventCommand)
         {
             var fileDto = await _mediator.Send(new GetEventsExportQuery());
